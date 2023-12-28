@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarif <sarif@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 22:12:37 by sarif             #+#    #+#             */
-/*   Updated: 2023/12/27 20:18:31 by sarif            ###   ########.fr       */
+/*   Created: 2023/12/21 22:28:58 by sarif             #+#    #+#             */
+/*   Updated: 2023/12/27 20:21:20 by sarif            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *str)
 {
@@ -83,27 +83,27 @@ static char	*ft_read(int fd, char *reserve)
 		buffer[rindex] = '\0';
 		reserve = ft_strjoin(reserve, buffer);
 		free(buffer);
-		// if (!reserve)
-		// 	return (NULL);
+		if (!reserve)
+			return (NULL);
 	}
 	return (reserve);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*reserve;
+	static char	*reserve[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || fd > OPEN_MAX)
 		return (NULL);
 	if (read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
-		return (free(reserve), reserve = NULL, NULL);
-	reserve = ft_read(fd, reserve);
-	if (!reserve || !*reserve)
-		return (free(reserve), reserve = NULL, NULL);
-	line = ft_getline(reserve);
+		return (free(reserve[fd]), reserve[fd] = NULL, NULL);
+	reserve[fd] = ft_read(fd, reserve[fd]);
+	if (!reserve[fd] || !*reserve[fd])
+		return (free(reserve[fd]), reserve[fd] = NULL, NULL);
+	line = ft_getline(reserve[fd]);
 	if (!line)
-		return (free(reserve), reserve = NULL, NULL);
-	reserve = ft_update(reserve);
+		return (free(reserve[fd]), reserve[fd] = NULL, NULL);
+	reserve[fd] = ft_update(reserve[fd]);
 	return (line);
 }

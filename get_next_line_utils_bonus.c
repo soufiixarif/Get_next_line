@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarif <sarif@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 22:12:44 by sarif             #+#    #+#             */
-/*   Updated: 2023/12/24 18:11:05 by sarif            ###   ########.fr       */
+/*   Created: 2023/12/21 22:28:56 by sarif             #+#    #+#             */
+/*   Updated: 2023/12/22 15:10:57 by sarif            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_getline(char *reserve)
 {
